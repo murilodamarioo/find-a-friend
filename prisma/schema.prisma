@@ -23,7 +23,7 @@ model Org {
   latitude  Decimal
   longitude Decimal
 
-  pets       Pet[]
+  pets Pet[]
 
   @@map("orgs")
 }

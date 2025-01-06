@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { RegisterOrgUseCase } from './register-org.use-case'
 import { beforeEach } from 'node:test'
-import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
-import { makeOrg } from '@/tests/factories/make-org-factory'
+import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs.repository'
+import { makeOrg } from '@/tests/factories/make-org.factory'
 import { OrgAlreadyExistsError } from '../errors/org-already-exists-error'
 import { compare } from 'bcryptjs'
 

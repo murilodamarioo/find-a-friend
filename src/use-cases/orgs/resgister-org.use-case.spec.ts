@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { RegisterUseCase } from './register'
+import { RegisterOrgUseCase } from './register-org.use-case'
 import { beforeEach } from 'node:test'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { makeOrg } from '@/tests/factories/make-org-factory'
@@ -8,11 +8,11 @@ import { compare } from 'bcryptjs'
 
 describe('Register Org use case', () => {
   let orgsRepository: InMemoryOrgsRepository
-  let sut: RegisterUseCase
+  let sut: RegisterOrgUseCase
 
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository()
-    sut = new RegisterUseCase(orgsRepository)
+    sut = new RegisterOrgUseCase(orgsRepository)
   })
   
   it('should be able to register a new org', async () => {

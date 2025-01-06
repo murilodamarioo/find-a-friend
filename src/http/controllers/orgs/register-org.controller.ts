@@ -21,7 +21,7 @@ const resgisterBodySchema = z.object({
   })
 })
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
+export async function registerOrgController(request: FastifyRequest, reply: FastifyReply) {
 
   const body = resgisterBodySchema.parse(request.body)
 

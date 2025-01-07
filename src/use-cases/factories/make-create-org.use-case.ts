@@ -1,8 +1,8 @@
 import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs.repository'
-import { RegisterUseCase } from '../orgs/register-org.use-case'
+import { RegisterOrgUseCase } from '../orgs/register-org.use-case'
 
 export function makeCreateOrgUseCase() {
 
-  return new RegisterUseCase(new PrismaOrgsRepository())
+  return new RegisterOrgUseCase(new PrismaOrgsRepository())
 
 }

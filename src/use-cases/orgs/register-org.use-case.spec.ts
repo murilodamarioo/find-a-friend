@@ -10,7 +10,6 @@ describe('Register Org use case', () => {
   let sut: RegisterOrgUseCase
 
   beforeEach(() => {
-    console.log('Before each block executed')
     orgsRepository = new InMemoryOrgsRepository()
     sut = new RegisterOrgUseCase(orgsRepository)
   })

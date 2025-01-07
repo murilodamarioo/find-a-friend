@@ -1,4 +1,4 @@
-import { makeCreatePetUseCase } from '@/tests/factories/make-pet.factory'
+import { makeCreatePetUseCase } from '@/use-cases/factories/make-create-pet.use-case'
 import { OrgNotFoundError } from '@/use-cases/errors/org-not-found.error'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -8,7 +8,7 @@ const resgisterPetBodySchema = z.object({
   name: z.string(),
   about: z.string(),
   age: z.string(),
-  size: z.string().min(6),
+  size: z.string(),
   energy_level: z.string(),
   environment: z.string(),
   isAvailable: z.boolean(),
@@ -16,10 +16,14 @@ const resgisterPetBodySchema = z.object({
 
 
 export async function registerPetController(request: FastifyRequest, reply: FastifyReply) {
+  await request.jwtVerify()
+
   const body = resgisterPetBodySchema.parse(request.body)
 
+  console.log(request.user)
+
   const registerPetUseCase = makeCreatePetUseCase()
-  const org_id = 'org-01'
+  const org_id = request.user.sub
 
   try {
     const { pet } = await registerPetUseCase.execute({...body, org_id})
@@ -27,8 +31,7 @@ export async function registerPetController(request: FastifyRequest, reply: Fast
     return reply.status(201).send({ pet })
   } catch (error) {
     if (error instanceof OrgNotFoundError) {
-      return reply.status(409).send({ message: error.message })
+      return reply.status(400).send({ message: error.message })
     }
   }
-
 }

@@ -1,10 +1,10 @@
 ## RFs (Functional Requirements)
-- [] It should be possible to register a pet.
+- [X] It should be possible to register a pet.
 - [] It should be possible to list all pets available for adoption in a city.
 - [] It should be possible to filter pets by their characteristics.
 - [] It should be possible to view the details of a pet for adoption.
-- [] It should be possible to register as an organization (ORG).
-- [] It should be possible to log in as an ORG.
+- [X] It should be possible to register as an organization (ORG).
+- [X] It should be possible to login as an ORG.
 
 ## RNs (Business Rules)
 - [] To list the pets, the city must be provided.

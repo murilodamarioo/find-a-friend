@@ -8,7 +8,7 @@ export class InMemoryPetsRepository implements PetsRepository {
 
   constructor(private orgsRepository: InMemoryOrgsRepository) {}
 
-  async create(data: Prisma.PetUncheckedCreateInput) {
+  async create(data: Prisma.PetUncheckedCreateInput): Promise<Pet> {
     const pet = {
       id: crypto.randomUUID(),
       ...data
@@ -36,6 +36,10 @@ export class InMemoryPetsRepository implements PetsRepository {
       )
 
     return pets
+  }
+
+  async findById(id: string): Promise<Pet | null> {
+    return this.items.find((item) => item.id === id) ?? null  
   }
 
 }

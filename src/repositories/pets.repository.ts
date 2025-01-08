@@ -14,4 +14,6 @@ export interface PetsRepository {
 
   findAll(params: FindAllParams): Promise<Pet[]>
 
+  findById(id: string): Promise<Pet | null>
+
 }

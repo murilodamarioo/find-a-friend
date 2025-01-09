@@ -16,8 +16,6 @@ const resgisterPetBodySchema = z.object({
 
 
 export async function registerPetController(request: FastifyRequest, reply: FastifyReply) {
-  await request.jwtVerify()
-
   const body = resgisterPetBodySchema.parse(request.body)
 
   console.log(request.user)

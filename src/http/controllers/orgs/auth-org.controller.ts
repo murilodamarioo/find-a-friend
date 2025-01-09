@@ -8,7 +8,7 @@ const authOrgBodySchema = z.object({
   password: z.string()
 })
 
-export async function AuthOrgController(request: FastifyRequest, reply: FastifyReply) {
+export async function authOrgController(request: FastifyRequest, reply: FastifyReply) {
   const body = authOrgBodySchema.parse(request.body)
 
   const authOrgUseCase = makeAuthOrgUseCase()

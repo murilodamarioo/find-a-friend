@@ -3,10 +3,10 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 const querySchema = z.object({
-  latitude: z.number().refine(value => {
+  latitude: z.coerce.number().refine(value => {
     return Math.abs(value) <= 90
   }),
-  longitude: z.number().refine(value => {
+  longitude: z.coerce.number().refine(value => {
     return Math.abs(value) <= 180
   })
 })
@@ -14,10 +14,10 @@ const querySchema = z.object({
 export async function fetchNearbyOrgsController(request: FastifyRequest, reply: FastifyReply) {
   const query = querySchema.parse(request.query)
 
-  const makeFetchNearbyOrgsUseCase = MakeFetchNearbyOrgsUseCase()
+  const fetchNearbyOrgsUseCase = MakeFetchNearbyOrgsUseCase()
 
   try {
-    const orgs = makeFetchNearbyOrgsUseCase.execute({ 
+    const { orgs } = await fetchNearbyOrgsUseCase.execute({ 
       userLatitude: query.latitude,
       userLongitude: query.longitude
     })

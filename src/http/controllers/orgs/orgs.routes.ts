@@ -1,7 +1,8 @@
-import { fetchNearbyOrgsController } from './fetch-nearby-orgs.controller'
+
+import { FastifyInstance } from 'fastify'
 import { registerOrgController } from './register-org.controller'
 import { authOrgController } from './auth-org.controller'
-import { FastifyInstance } from 'fastify'
+import { fetchNearbyOrgsController } from './fetch-nearby-orgs.controller'
 
 export async function orgsRoutes(app: FastifyInstance) {
 

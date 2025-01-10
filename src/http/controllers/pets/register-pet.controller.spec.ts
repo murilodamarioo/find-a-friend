@@ -5,7 +5,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import request from 'supertest'
 
 
-describe('Register Pet controller test', () => {
+describe('Register Pet (E2E)', () => {
   
   beforeAll(async () => {
     await app.ready()

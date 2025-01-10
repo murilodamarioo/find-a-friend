@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { makeOrg } from '@/tests/factories/make-org.factory'
 
 
-describe('Auth Org controller tests', () => {
+describe('Auth Org (E2E)', () => {
   
   beforeAll(async () => {
     await app.ready()

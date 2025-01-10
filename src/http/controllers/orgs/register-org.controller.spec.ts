@@ -3,7 +3,7 @@ import { makeOrg } from '@/tests/factories/make-org.factory'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-describe('Register Org controller tests', () => {
+describe('Register Org (E2E)', () => {
 
   beforeAll(async () => {
     await app.ready()

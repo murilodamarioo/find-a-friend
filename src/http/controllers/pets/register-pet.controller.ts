@@ -26,7 +26,7 @@ export async function registerPetController(request: FastifyRequest, reply: Fast
   try {
     const { pet } = await registerPetUseCase.execute({...body, org_id})
 
-    return reply.status(201).send({ pet })
+    return reply.status(201).send(pet)
   } catch (error) {
     if (error instanceof OrgNotFoundError) {
       return reply.status(400).send({ message: error.message })

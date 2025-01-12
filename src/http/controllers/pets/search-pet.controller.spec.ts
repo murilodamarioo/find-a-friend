@@ -96,8 +96,14 @@ describe('Search Pet (E2E)', () => {
         password: org.password
       })
       .expect(200)
-    
+
     const { token } = authResponse.body
+
+    await request(app.server)
+      .post('/orgs/pets')
+      .set('Authorization', `Bearer ${token}`)
+      .send(makePet({ size: 'large' }))
+      .expect(201)
 
     await request(app.server)
       .post('/orgs/pets')
@@ -111,15 +117,11 @@ describe('Search Pet (E2E)', () => {
       .send(makePet({ size: 'medium' }))
       .expect(201)
 
-    await request(app.server)
-      .post('/orgs/pets')
-      .set('Authorization', `Bearer ${token}`)
-      .send(makePet({ size: 'large' }))
-      .expect(201)
-
     const response = await request(app.server)
       .get('/orgs/pets')
       .query({ city: org.id, size: 'large' })
+
+    console.log(response.body)
     
     expect(response.statusCode).toBe(200)
     expect(response.body.pets).toHaveLength(2)
@@ -163,10 +165,7 @@ describe('Search Pet (E2E)', () => {
   it('should be able to search a pet by city and energy level', async () => {
     const org = makeOrg()
 
-    await request(app.server)
-      .post('/orgs')
-      .send(org)
-      .expect(201)
+    await request(app.server).post('/orgs').send(org).expect(201)
 
     const authResponse = await request(app.server)
       .post('/auth')
@@ -175,8 +174,14 @@ describe('Search Pet (E2E)', () => {
         password: org.password
       })
       .expect(200)
-    
+
     const { token } = authResponse.body
+
+    await request(app.server)
+      .post('/orgs/pets')
+      .set('Authorization', `Bearer ${token}`)
+      .send(makePet({ energy_level: 'low' }))
+      .expect(201)
 
     await request(app.server)
       .post('/orgs/pets')
@@ -184,15 +189,9 @@ describe('Search Pet (E2E)', () => {
       .send(makePet({ energy_level: 'high' }))
       .expect(201)
     
-    await request(app.server)
-      .post('/orgs/pets')
-      .set('Authorization', `Bearer ${token}`)
-      .send(makePet({ energy_level: 'low' }))
-      .expect(201)
-    
     const response = await request(app.server)
       .get('/orgs/pets')
-      .query({ energy_level: 'high' })
+      .query({ city: org.city, energy_level: 'high' })
       
     expect(response.statusCode).toBe(200)
     expect(response.body.pets).toHaveLength(1)

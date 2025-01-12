@@ -3,14 +3,14 @@ import { makeGetPetUseCase } from '@/use-cases/factories/make-get-pet.use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-const routeSchema = z.object({
+const routeParamSchema = z.object({
   id: z.string()
 })
 
 
 export async function getPetController(request: FastifyRequest, reply: FastifyReply) {
 
-  const { id } = routeSchema.parse(request.params)
+  const { id } = routeParamSchema.parse(request.params)
   
   const getPetUseCase = makeGetPetUseCase()
 

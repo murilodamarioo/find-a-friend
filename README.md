@@ -222,7 +222,6 @@ Authorization: Bearer <token>
   - `energy_level`: `string` **(optional)**
   - `environment`: `string` **(optional)**
   - `size`: `string` **(optional)**
-  - 
 - 📝 **Description:** Searches for pets based on query parameters.
 
 - 📤 **Response:**
